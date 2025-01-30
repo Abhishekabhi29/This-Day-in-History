@@ -1,19 +1,18 @@
 document.getElementById('dateForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault(); 
   
     const dateInput = document.getElementById('dateInput').value;
     const resultDiv = document.getElementById('result');
   
-    // Validate input format (MM-DD)
+   
     if (!/^\d{2}-\d{2}$/.test(dateInput)) {
       resultDiv.innerHTML = '<p class="error">Please enter a valid date in MM-DD format (e.g., 01-31).</p>';
       return;
     }
   
-    // Split the date into month and day
+
     const [month, day] = dateInput.split('-');
   
-    // Fetch data from the Wikipedia API
     fetch(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${month}/${day}`)
       .then((response) => {
         if (!response.ok) {
